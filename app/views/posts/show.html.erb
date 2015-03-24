@@ -1,10 +1,13 @@
 <div class="container">
-  <div class="col-md-3"></div> 
-  <div class="col-md-6">
-    <%= @post.content %>
-    <%= render 'comments/form' %>
-    <%= render @post.comments %>
+  <div class="col-md-6 col-md-offset-3">
+    <p>
+      <%= @post.content %>
+    </p>
+      <%= render @comments %>
+    <a href="#" id="comment-button">Comment</a>
+    <div id="comment-form">
+      <%= render 'comments/form' %>
+    </div>
   </div>
-  <div class="col-md-3"></div> 
 </div>
 

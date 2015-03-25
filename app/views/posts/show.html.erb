@@ -3,10 +3,11 @@
     <p>
       <%= @post.content %>
     </p>
-      <%= render @comments %>
-    <a href="#" id="comment-button">Comment</a>
-    <div id="comment-form">
+    <div class="comments-form">
       <%= render 'comments/form' %>
+    </div>
+    <div class="comments">
+      <%= render @comments %>
     </div>
   </div>
 </div>

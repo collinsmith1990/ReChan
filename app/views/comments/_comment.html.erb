@@ -1,8 +1,14 @@
-<p>
+<div class="comment">
+  <p>
   <strong>Commenter:</strong>
-  <%= comment.commenter %>
-</p>
-<p>
+  <% unless comment.commenter = "" %>
+    <%= comment.commenter %>
+  <% else %>
+      Anonymous
+  <% end %>
+  </p>
+  <p>
   <strong>Content:</strong>
   <%= comment.content %>
-</p>
+  </p>
+</div>

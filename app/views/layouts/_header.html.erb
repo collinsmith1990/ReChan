@@ -3,6 +3,15 @@
     <%= link_to "ReChan", root_path, class: "navbar-brand" %>
     <ul class="nav navbar-nav navbar-right">
       <li><%= link_to "Sign up", new_user_path %></li>
+      <% if current_user %>
+        <li>
+          <%= link_to "Log out", logout_path, method: "delete" %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "Log in", login_path %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </header>

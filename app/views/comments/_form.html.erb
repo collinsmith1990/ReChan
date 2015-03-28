@@ -2,6 +2,11 @@
 <%= form_for([@post, @comment]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <li>
+    <% if current_user %>
+      <%= f.hidden_field :commenter, :value => current_user.user_name %>
+    <% end %>
+  </li>
+  <li>
     <%= f.label :comment %>
     <%= f.text_area :content, class: "form-control" %>
   </li>

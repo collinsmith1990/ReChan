@@ -1,11 +1,5 @@
 <div class="comment">
-  <p>
-  <% if comment.commenter %>
-    <%= comment.commenter %>
-  <% else %>
-    Anonymous
-  <% end %>
-  </p>
+  <p><%= commenter_name comment %></p>
   <p>
   <strong>Comment:</strong>
   <%= comment.content %>

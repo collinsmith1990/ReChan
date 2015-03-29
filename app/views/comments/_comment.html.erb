@@ -1,5 +1,11 @@
 <div class="comment">
-  <p><%= commenter_name comment %></p>
+  <p>
+    <% if comment.user %>
+      <%= link_to comment.commenter, user_path(comment.user) %>
+    <% else %>
+      Anonymous
+    <% end %>
+  </p>
   <p>
   <strong>Comment:</strong>
   <%= comment.content %>

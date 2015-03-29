@@ -1,15 +1,14 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the CommentsHelper. For example:
-#
-# describe CommentsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe CommentsHelper, :type => :helper do
-  #pending "add some examples to (or delete) #{__FILE__}"
+
+  it "should return commenters name from comment" do
+    comment = FactoryGirl.create(:comment)
+    expect(commenter_name(comment)).to eq(comment.commenter)
+  end
+
+  it "should return anonymous for a nil commenter" do
+    comment = FactoryGirl.create(:comment, commenter: nil)
+    expect(commenter_name(comment)).to eq("Anonymous")
+  end
 end

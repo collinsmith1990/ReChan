@@ -15,8 +15,9 @@ RSpec.describe "User:", :type => :request do
 
       expect{ click_button "Create User" }.to change{User.count}.by(1)
       expect(current_path).to eq("/")
-      expect(page).to have_content("Log out")
-      expect(page).not_to have_content("Sign up")
+      expect(page).to have_link("Log out")
+      expect(page).to have_link("TestUser")
+      expect(page).not_to have_link("Sign up")
     end
   end
 
@@ -45,8 +46,8 @@ RSpec.describe "User:", :type => :request do
       click_button "Login"
 
       expect(current_path).to eq("/")
-      expect(page).to have_content("Log out")
-      expect(page).not_to have_content("Sign up")
+      expect(page).to have_link("Log out")
+      expect(page).not_to have_link("Sign up")
     end
   end
 

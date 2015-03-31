@@ -1,9 +1,9 @@
 <div class="col-md-6 col-md-offset-3">
   <h3><%= @user.user_name %></h3>
-  <ul>
+  <ul class="comments">
     <% @comments.each do |comment| %>
       <li><%= link_to comment.post.title, post_path(comment.post) %>
-      <li><%= comment.content %></li>
+      <li class="comment"><%= comment.content %></li>
     <% end %>
   </ul>
 </div>

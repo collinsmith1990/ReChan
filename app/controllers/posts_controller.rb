@@ -17,6 +17,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
+      flash[:success] = "Created new post"
       redirect_to(@post)
     else
       render 'new'
@@ -26,6 +27,6 @@ class PostsController < ApplicationController
   private
     
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit(:title, :content, :user_id)
     end
 end

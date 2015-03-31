@@ -15,6 +15,28 @@ RSpec.describe "Posts:", :type => :request do
 
       expect(current_path).to eq(post_path(1))
       expect(page).to have_content("TestContent")      
+      expect(page).to have_content("Anonymous")
+    end
+  end
+  describe "Create a valid post with user" do
+    it "should create a valid post with a link to the user" do
+      user = FactoryGirl.create(:user)
+      post = FactoryGirl.build(:post)
+      visit login_path
+
+      fill_in "User name", :with => user.user_name
+      fill_in "Password", :with => user.password
+      click_button "Login"
+
+      visit new_post_path
+      
+      fill_in "post_title", :with => post.title
+      fill_in "post_content", :with => post.content
+      click_button "Create Post"
+
+      expect(page).to have_link(user.user_name)
+      expect(page).to have_content(post.title)
+      expect(page).to have_content(post.content)
     end
   end
   describe "Create an invalid post" do

@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
     @comments = @post.comments.reject(&:new_record?)
     @comment = @post.comments.build(comment_params)
     if @comment.save
+      flash[:success] = "Created new comment"
       redirect_to post_path(@post)
     else
       render 'posts/show'

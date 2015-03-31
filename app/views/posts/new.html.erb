@@ -4,6 +4,11 @@
       <%= form_for(@post) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <li>
+          <% if current_user %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+          <% end %>
+        </li>
+        <li>
           <%= f.label :title %>
           <%= f.text_field :title, class: "form-control" %>
         </li>

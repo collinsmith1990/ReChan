@@ -3,7 +3,7 @@
     <p class="post">
       <h3><%= @post.title %></h3>
       <% if @post.user %>
-        <%= link_to @post.user.user_name, user_path(@post.user) %>
+        <%= link_to @post.user.display_name, user_path(@post.user) %>
       <% else %>
         Anonymous
       <% end %>

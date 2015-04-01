@@ -37,11 +37,12 @@ RSpec.describe "User:", :type => :request do
 
   describe "User logs in" do
     it "should log the user in." do
-      user = FactoryGirl.create(:user)
+      user_name = "TestUser"
+      user = FactoryGirl.create(:user, user_name: user_name)
       visit root_url
       click_link "Log in"
 
-      fill_in "User name", :with => user.user_name
+      fill_in "User name", :with => user.display_name
       fill_in "Password", :with => user.password
       click_button "Login"
 

@@ -20,7 +20,7 @@ RSpec.describe "Posts:", :type => :request do
   end
   describe "Create a valid post with user" do
     it "should create a valid post with a link to the user" do
-      user = FactoryGirl.create(:user)
+      user = FactoryGirl.create(:user, user_name: "TestUser")
       post = FactoryGirl.build(:post)
       visit login_path
 
@@ -34,7 +34,7 @@ RSpec.describe "Posts:", :type => :request do
       fill_in "post_content", :with => post.content
       click_button "Create Post"
 
-      expect(page).to have_link(user.user_name)
+      expect(page).to have_link(user.display_name)
       expect(page).to have_content(post.title)
       expect(page).to have_content(post.content)
     end

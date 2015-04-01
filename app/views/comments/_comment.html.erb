@@ -1,7 +1,7 @@
 <div class="comment">
   <p>
     <% if comment.user %>
-      <%= link_to comment.commenter, user_path(comment.user) %>
+      <%= link_to comment.user.display_name, user_path(comment.user) %>
     <% else %>
       Anonymous
     <% end %>

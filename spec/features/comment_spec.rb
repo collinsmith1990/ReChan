@@ -31,15 +31,15 @@ RSpec.describe "Comments:", :type => :request do
 
   describe "User creates a comment" do
     it "should create the comment with the username as a link to their profile" do
-      user = FactoryGirl.create(:user)
+      user = FactoryGirl.create(:user, user_name: "TestUser")
       post = FactoryGirl.create(:post)
       comment = FactoryGirl.create(:comment, user_id: user.id, post_id: post.id)
       visit post_path(post)
 
       expect(page).to have_content(comment.content)
-      expect(page).to have_content(user.user_name)
+      expect(page).to have_link(user.display_name)
 
-      click_link user.user_name
+      click_link user.display_name
 
       expect(current_path).to eq(user_path(user))
     end

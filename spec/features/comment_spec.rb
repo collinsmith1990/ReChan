@@ -44,4 +44,35 @@ RSpec.describe "Comments:", :type => :request do
       expect(current_path).to eq(user_path(user))
     end
   end
+
+  describe "Delete a comment from a post" do
+    it "should delete the comment" do
+      post = FactoryGirl.create(:post)
+      user = FactoryGirl.create(:user)
+      comment = FactoryGirl.create(:comment, user_id: user.id, post_id: post.id)
+      visit login_path
+
+      fill_in "User name", :with => user.user_name
+      fill_in "Password", :with => user.password
+      click_button "Login"
+
+      visit post_path(post)
+
+      click_link "delete"
+
+      expect(current_path).to eq(post_path(post))
+      expect(page).to_not have_content(comment.content)
+    end
+  end
+
+  describe "Unlogged in user tries to delete a comment" do
+    it "should not show a delete link" do
+      post = FactoryGirl.create(:post)
+      user = FactoryGirl.create(:user)
+      FactoryGirl.create(:comment, user_id: user.id, post_id: post.id)
+      visit post_path(post)
+
+      expect(page).to_not have_content("delete")
+    end
+  end
 end

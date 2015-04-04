@@ -1,19 +1,17 @@
-<div class="container">
-  <div class="col-md-8 col-md-offset-1">
-    <ul>
-      <% @posts.each do |post| %>
-          <li class="post">
-            <% if post.link? %>
-              <%= link_to post.title, post.link %>
-            <% else %>
-              <%= link_to post.title, post_path(post) %>
-            <% end %>
-            <br><%= link_to "Comments (#{post.comments.count})", post_path(post), class: "comments-link" %>
-          </li>
-      <% end %>
-    </ul>
-  </div>
-  <div class="col-md-3">
-    <%= link_to "Create a post", new_post_path, class: "btn btn-default" %> 
-  </div>
+<div class="col-md-8 col-md-offset-1">
+  <ul>
+    <% @posts.each do |post| %>
+        <li class="post">
+          <% if post.link? %>
+            <%= link_to post.title, post.link %>
+          <% else %>
+            <%= link_to post.title, post_path(post) %>
+          <% end %>
+          <br><%= link_to "Comments (#{post.comments.count})", post_path(post), class: "comments-link" %>
+        </li>
+    <% end %>
+  </ul>
+</div>
+<div class="col-md-3">
+  <%= link_to "Create a post", new_post_path, class: "btn btn-default" %> 
 </div>

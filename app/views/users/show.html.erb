@@ -1,9 +1,35 @@
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-8 col-md-offset-2">
   <h3><%= @user.display_name %></h3>
-  <ul class="comments">
-    <% @comments.each do |comment| %>
-      <li><%= link_to comment.post.title, post_path(comment.post) %>
-      <li class="comment"><%= comment.content %></li>
-    <% end %>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#comments" data-toggle="tab">Comments</a></li>
+    <li><a href="#posts" data-toggle="tab">Posts</a></li>
   </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="comments">
+      <ul class="comments">
+        <% @comments.each do |comment| %>
+          <li><%= link_to comment.post.title, post_path(comment.post) %>
+          <li class="comment"><%= comment.content %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="tab-pane" id="posts">
+      <ul>
+        <% @posts.each do |post| %>
+          <li class="post">
+            <% if post.link?%>
+              <%= link_to post.title, post.link %>
+            <% else %>
+              <%= link_to post.title, post_path(post) %>
+            <% end %>
+          <br><%= link_to "Comments (#{post.comments.count})", post_path(post), class: "comments-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
 </div>

@@ -9,9 +9,9 @@ RSpec.describe "Posts:", :type => :request do
       
       expect(current_path).to eq(new_post_path)
 
-      fill_in "post_title", :with => "TestTitle"
-      fill_in "post_content", :with => "TestContent"
-      click_button "Create Post"
+      fill_in "post_title", match: :first, :with => "TestTitle"
+      fill_in "post_content", match: :first, :with => "TestContent"
+      click_button "Create Post", match: :first
 
       expect(current_path).to eq(post_path(1))
       expect(page).to have_content("TestContent")      
@@ -30,9 +30,9 @@ RSpec.describe "Posts:", :type => :request do
 
       visit new_post_path
       
-      fill_in "post_title", :with => post.title
-      fill_in "post_content", :with => post.content
-      click_button "Create Post"
+      fill_in "post_title", match: :first, :with => post.title
+      fill_in "post_content", match: :first, :with => post.content
+      click_button "Create Post", match: :first
 
       expect(page).to have_link(user.display_name)
       expect(page).to have_content(post.title)
@@ -47,14 +47,24 @@ RSpec.describe "Posts:", :type => :request do
       
       expect(current_path).to eq(new_post_path)
 
-      fill_in "post_title", :with => ""
-      fill_in "post_content", :with => ""
-      click_button "Create Post"
+      fill_in "post_title", match: :first, :with => ""
+      fill_in "post_content", match: :first, :with => ""
+      click_button "Create Post", match: :first
 
       expect(current_path).to eq(posts_path)
-      expect(page).to have_content("The form contains 2 errors")      
       expect(page).to have_content("Title can't be blank")
-      expect(page).to have_content("Content can't be blank")
+    end
+  end
+  describe "Create a post with a link" do
+    it "should create a post with the title as the user submitted link" do
+      post = FactoryGirl.create(:post, link: "https://www.google.com/")
+      visit post_path(post)
+
+      expect(page).to have_selector("a[href='#{post.link}']", text: post.title)
+
+      visit posts_path
+
+      expect(page).to have_selector("a[href='#{post.link}']", text: post.title)
     end
   end
 end

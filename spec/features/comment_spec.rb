@@ -13,6 +13,7 @@ RSpec.describe "Comments:", :type => :request do
 
       expect(page).to have_content("Anonymous")      
       expect(page).to have_content(comment.content)      
+      expect(page).to_not have_link("delete")
     end
   end
 
@@ -65,7 +66,7 @@ RSpec.describe "Comments:", :type => :request do
     end
   end
 
-  describe "Unlogged in user tries to delete a comment" do
+  describe "Anonymous user tries to delete a comment" do
     it "should not show a delete link" do
       post = FactoryGirl.create(:post)
       user = FactoryGirl.create(:user)

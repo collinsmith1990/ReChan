@@ -8,27 +8,24 @@
 
   <div class="tab-content">
     <div class="tab-pane active" id="comments">
-      <ul class="comments">
-        <% @comments.each do |comment| %>
-          <li><%= link_to comment.post.title, post_path(comment.post) %>
-          <li class="comment"><%= comment.content %></li>
-        <% end %>
-      </ul>
+      <% @comments.each do |comment| %>
+        <div class="comment">
+          <p>
+            <%= link_to comment.post.title, post_path(comment.post) %>
+          </p>
+          <p>
+          <strong>Comment:</strong>
+          <%= comment.content %>
+          </p>
+          <% if current_user?(comment.user) %>
+            <%= link_to "delete", [comment.post, comment], method: :delete %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
 
     <div class="tab-pane" id="posts">
-      <ul>
-        <% @posts.each do |post| %>
-          <li class="post">
-            <% if post.link?%>
-              <%= link_to post.title, post.link %>
-            <% else %>
-              <%= link_to post.title, post_path(post) %>
-            <% end %>
-          <br><%= link_to "Comments (#{post.comments.count})", post_path(post), class: "comments-link" %>
-          </li>
-        <% end %>
-      </ul>
+      <%= render 'shared/posts' %>
     </div>
   </div>
 

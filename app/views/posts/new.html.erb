@@ -8,55 +8,42 @@
   <div class="tab-content">
 
     <div class="tab-pane active" id="text-post">
-      <ul>
-        <%= form_for(@post) do |f| %>
-          <%= render 'shared/error_messages', object: f.object %>
-          <li>
-            <% if current_user %>
-              <%= f.hidden_field :user_id, :value => current_user.id %>
-            <% end %>
-          </li>
-          <li>
-            <%= f.label :title %>
-            <%= f.text_field :title, class: "form-control" %>
-          </li>
-          <li>
-            <%= f.label :content %>
-            <%= f.text_field :content, class: "form-control" %>
-          </li>
-          <li>
-            <%= f.submit "Create Post", class: "btn btn-primary" %>
-          </li>
+      <%= form_for(@post) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <% if current_user %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
         <% end %>
-      </ul>
+
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control" %>
+
+        <%= f.label :content %>
+        <%= f.text_field :content, class: "form-control" %>
+
+        <%= f.submit "Create Post", class: "btn btn-primary" %>
+    <% end %>
     </div>
 
     <div class="tab-pane" id="link-post">
-      <ul>
-        <%= form_for(@post) do |f| %>
-          <%= render 'shared/error_messages', object: f.object %>
-          <li>
-            <% if current_user %>
-              <%= f.hidden_field :user_id, :value => current_user.id %>
-            <% end %>
-          </li>
-          <li>
-            <%= f.label :title %>
-            <%= f.text_field :title, class: "form-control" %>
-          </li>
-          <li>
-            <%= f.label :link %>
-            <%= f.text_field :link, class: "form-control" %>
-          </li>
-          <li>
-            <%= f.label :content %>
-            <%= f.text_field :content, class: "form-control" %>
-          </li>
-          <li>
-            <%= f.submit "Create Post", class: "btn btn-primary" %>
-          </li>
+      <%= form_for(@post) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <% if current_user %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
         <% end %>
-      </ul>
+
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control" %>
+
+        <%= f.label :link %>
+        <%= f.text_field :link, class: "form-control" %>
+
+        <%= f.label :content %>
+        <%= f.text_field :content, class: "form-control" %>
+
+        <%= f.submit "Create Post", class: "btn btn-primary" %>
+    <% end %>
     </div>
 
   </div>

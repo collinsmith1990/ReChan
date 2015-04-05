@@ -4,12 +4,7 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
-  def forget(user)
-    cookies.delete(:user_id)
-  end
-
   def log_out
-    forget(current_user)
     session.delete(:user_id)
     @current_user = nil
   end

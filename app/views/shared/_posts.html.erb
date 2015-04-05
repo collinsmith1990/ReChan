@@ -1,0 +1,12 @@
+<ul>
+  <% @posts.each do |post| %>
+      <li class="post">
+        <% if post.link? %>
+          <%= link_to post.title, post.link %>
+        <% else %>
+          <%= link_to post.title, post_path(post) %>
+        <% end %>
+        <br><%= link_to "Comments (#{post.comments.count})", post_path(post), class: "comments-link" %>
+      </li>
+  <% end %>
+</ul>

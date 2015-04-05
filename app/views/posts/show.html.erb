@@ -16,6 +16,8 @@
     <%= render 'comments/form' %>
   </div>
   <div class="comments">
+    <%= will_paginate @comments %>
     <%= render @comments %>
+    <%= will_paginate @comments %>
   </div>
 </div>

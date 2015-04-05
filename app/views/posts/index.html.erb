@@ -1,5 +1,7 @@
 <div class="col-md-8 col-md-offset-1">
+  <%= will_paginate %>
   <%= render 'shared/posts' %>
+  <%= will_paginate %>
 </div>
 <div class="col-md-3">
   <%= link_to "Create a post", new_post_path, class: "btn btn-default" %> 

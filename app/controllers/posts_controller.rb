@@ -1,12 +1,13 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all
+    @posts = Post.paginate(page: params[:page])
+    #@posts = Post.all
   end
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.reject(&:new_record?)
+    @comments = @post.comments.paginate(page: params[:page], per_page: 100)
     @comment = @post.comments.build(params[:comment])
   end
 

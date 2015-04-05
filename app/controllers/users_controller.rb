@@ -17,8 +17,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @comments = @user.comments
-    @posts = @user.posts
+    @comments = @user.comments.paginate(page: params[:comments_page])
+    @posts = @user.posts.paginate(page: params[:posts_page])
   end
 
   private

@@ -8,6 +8,7 @@
 
   <div class="tab-content">
     <div class="tab-pane active" id="comments">
+      <%= will_paginate @comments, param_name: 'comments_page' %>
       <% @comments.each do |comment| %>
         <div class="comment">
           <p>
@@ -22,10 +23,13 @@
           <% end %>
         </div>
       <% end %>
+      <%= will_paginate @comments, param_name: 'comments_page' %>
     </div>
 
     <div class="tab-pane" id="posts">
+      <%= will_paginate @posts, param_name: 'posts_page' %>
       <%= render 'shared/posts' %>
+      <%= will_paginate @posts, param_name: 'posts_page' %>
     </div>
   </div>
 

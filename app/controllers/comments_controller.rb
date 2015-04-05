@@ -2,9 +2,14 @@ class CommentsController < ApplicationController
   before_action :logged_in_user, only: [:destroy, :update]
   before_action :correct_user, only: [:destroy, :update]
 
+  def index
+    @post = Post.find(params[:post_id])
+    redirect_to post_path(@post)
+  end
+
   def create
     @post = Post.find(params[:post_id])
-    @comments = @post.comments.reject(&:new_record?)
+    @comments = @post.comments.paginate(page: params[:page], per_page: 100)
     @comment = @post.comments.build(comment_params)
     if @comment.save
       flash[:success] = "Created new comment"

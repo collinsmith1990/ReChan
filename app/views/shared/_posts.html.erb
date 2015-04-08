@@ -6,6 +6,9 @@
         <% else %>
           <%= link_to post.title, post_path(post) %>
         <% end %>
+        <% if current_user?(post.user) %>
+          <div class="delete-link"><%= link_to "delete", post, method: :delete %></div>
+        <% end %>
         <br><%= link_to "Comments (#{post.comments.count})", post_path(post), class: "comments-link" %>
       </li>
   <% end %>

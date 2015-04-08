@@ -5,6 +5,9 @@
     <% else %>
       <h3><%= @post.title %></h3>
     <% end %>
+    <% if current_user?(@post.user) %>
+      <div class="delete-link"><%= link_to "delete", @post, method: :delete %></div>
+    <% end %>
     <% if @post.user %>
       <%= link_to @post.user.display_name, user_path(@post.user) %>
     <% else %>

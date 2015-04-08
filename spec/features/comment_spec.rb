@@ -73,7 +73,7 @@ RSpec.describe "Comments:", :type => :request do
       FactoryGirl.create(:comment, user_id: user.id, post_id: post.id)
       visit post_path(post)
 
-      expect(page).to_not have_content("delete")
+      expect(page).to_not have_link("delete")
     end
   end
 end

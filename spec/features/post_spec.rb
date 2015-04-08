@@ -67,4 +67,33 @@ RSpec.describe "Posts:", :type => :request do
       expect(page).to have_selector("a[href='#{post.link}']", text: post.title)
     end
   end
+
+  describe "Delete a post" do
+    it "should delete the post" do
+      user = FactoryGirl.create(:user)
+      post = FactoryGirl.create(:post, user_id: user.id)
+      visit login_path
+
+      fill_in "User name", :with => user.user_name
+      fill_in "Password", :with => user.password
+      click_button "Login"
+
+      visit post_path(post)
+
+      click_link "delete"
+
+      expect(current_path).to eq("/")
+      expect(page).to_not have_link(post.title)
+    end
+
+    describe "Anonymous user tries to delete a post" do
+      it "should not show a delete link" do
+        post = FactoryGirl.create(:post)
+
+        visit post_path(post)
+
+        expect(page).to_not have_link("delete")
+      end
+    end
+  end
 end

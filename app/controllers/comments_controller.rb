@@ -2,9 +2,9 @@ class CommentsController < ApplicationController
   before_action :logged_in_user, only: [:destroy, :update]
   before_action :correct_user, only: [:destroy, :update]
 
-  def index
+  def new
     @post = Post.find(params[:post_id])
-    redirect_to post_path(@post)
+    @comment = @post.comments.build(params[:comment])
   end
 
   def create
@@ -15,11 +15,9 @@ class CommentsController < ApplicationController
       flash[:success] = "Created new comment"
       redirect_to post_path(@post)
     else
-      render 'posts/show'
+      #render 'posts/show'
+      render 'new'
     end
-  end
-
-  def update
   end
 
   def destroy

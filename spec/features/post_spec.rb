@@ -64,7 +64,7 @@ RSpec.describe "Posts:", :type => :request do
 
       visit posts_path
 
-      expect(page).to have_selector("a[href='#{post.link}']", text: post.title)
+      expect(page).to have_selector("a.#{post.type}-title[href='#{post.link}']", text: post.title)
     end
   end
 

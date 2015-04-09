@@ -1,10 +1,6 @@
 <div class="col-md-6 col-md-offset-3">
   <p class="post">
-    <% if @post.link? %>
-      <h3><a href=<%= @post.link %>><%= @post.title %></a></h3>
-    <% else %>
-      <h3><%= @post.title %></h3>
-    <% end %>
+    <h3><%= link_to @post.title, @post.linker, class: "#{@post.type}-title" %></h3>
     <% if current_user?(@post.user) %>
       <div class="delete-link"><%= link_to "delete", @post, method: :delete %></div>
     <% end %>

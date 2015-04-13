@@ -16,14 +16,6 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def linker
-    unless self.link
-      "post_path(post)"
-    else
-      self.link
-    end
-  end
-
   private
 
   def assign_user_id

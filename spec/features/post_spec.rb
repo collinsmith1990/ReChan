@@ -16,6 +16,14 @@ RSpec.describe "Posts:", :type => :request do
       expect(current_path).to eq(post_path(1))
       expect(page).to have_content("TestContent")      
       expect(page).to have_content("Anonymous")
+
+      visit posts_path
+
+      expect(page).to have_link("TestTitle")
+      click_link "TestTitle"
+
+      expect(page).to have_content("TestContent")      
+      expect(page).to have_content("Anonymous")
     end
   end
   describe "Create a valid post with user" do

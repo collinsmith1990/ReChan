@@ -1,7 +1,7 @@
 <ul>
   <% @posts.each do |post| %>
       <li class="post">
-      <%= link_to post.title, post.linker, class: "#{post.type}-title" %>
+      <%= link_to_post(post) %>
         <% if current_user?(post.user) %>
           <div class="delete-link"><%= link_to "delete", post, method: :delete %></div>
         <% end %>

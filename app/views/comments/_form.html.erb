@@ -1,17 +1,9 @@
 
 <%= form_for([@post, @comment]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <li>
-    <% if current_user %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-    <% end %>
-  </li>
-  <li>
     <%= f.label :comment %>
     <%= f.text_area :content, class: "form-control" %>
-  </li>
-  <li>
+
     <%= f.submit "Create Comment", class: "btn btn-primary" %>
-  </li>
 <% end %>
 

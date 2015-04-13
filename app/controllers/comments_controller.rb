@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comments = @post.comments.paginate(page: params[:page], per_page: 100)
     @comment = @post.comments.build(comment_params)
+    @comment.current_user = current_user
     if @comment.save
       flash[:success] = "Created new comment"
       redirect_to post_path(@post)

@@ -13,7 +13,7 @@ RSpec.describe "Posts:", :type => :request do
       fill_in "post_content", match: :first, :with => "TestContent"
       click_button "Create Post", match: :first
 
-      expect(current_path).to eq(post_path(1))
+      expect(current_path).to eq(post_path(Post.last.id))
       expect(page).to have_content("TestContent")      
       expect(page).to have_content("Anonymous")
 

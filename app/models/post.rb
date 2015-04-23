@@ -1,5 +1,7 @@
 class Post < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
+  has_many :user_item_bumps
+  has_many :bumped_users, through: :user_item_bumps, source: :user
   belongs_to :user
   validates :title, presence: true, length: { maximum: 100 }
   validates :content, length: { maximum: 1000 }

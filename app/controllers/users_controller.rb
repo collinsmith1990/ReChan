@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @comments = @user.comments.paginate(page: params[:comments_page])
     @posts = @user.posts.paginate(page: params[:posts_page])
+    @bump = UserItemBump.new
   end
 
   private

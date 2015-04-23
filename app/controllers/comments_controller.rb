@@ -16,7 +16,6 @@ class CommentsController < ApplicationController
       flash[:success] = "Created new comment"
       redirect_to post_path(@post)
     else
-      #render 'posts/show'
       render 'new'
     end
   end

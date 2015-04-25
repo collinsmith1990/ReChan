@@ -1,7 +1,4 @@
 class PostsController < ApplicationController
-  before_action only: :create do
-    matching_user_id(post_params[:user_id])
-  end
   before_action only: :destroy do
     logged_in_user
     correct_user
@@ -47,7 +44,11 @@ class PostsController < ApplicationController
   private
     
     def post_params
-      params.require(:post).permit(:title, :content, :user_id, :link)
+      if logged_in?
+        params.require(:post).permit(:title, :content, :link).merge(user_id: current_user.id)
+      else
+        params.require(:post).permit(:title, :content, :link)
+      end
     end
 
     def correct_user

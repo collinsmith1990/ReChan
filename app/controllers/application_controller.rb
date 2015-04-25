@@ -10,18 +10,4 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
-
-  def matching_user_id(user_id)
-    unless logged_in?
-      if user_id
-        flash[:danger] = "Please log in"
-        redirect_to root_url
-      end
-    else 
-      if current_user.id != user_id.to_i
-        flash[:danger] = "Please log in"
-        redirect_to root_url
-      end
-    end
-  end
 end

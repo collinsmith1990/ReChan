@@ -1,7 +1,4 @@
 class CommentsController < ApplicationController
-  before_action only: :create do
-    matching_user_id(comment_params[:user_id])
-  end
   before_action only: :destroy do
     logged_in_user
     correct_user
@@ -36,7 +33,11 @@ class CommentsController < ApplicationController
   private
   
     def comment_params
-      params.require(:comment).permit(:content, :user_id)
+      if logged_in?
+        params.require(:comment).permit(:content).merge(user_id: current_user.id)
+      else
+        params.require(:comment).permit(:content)
+      end
     end
 
     def correct_user

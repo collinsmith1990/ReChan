@@ -1,7 +1,6 @@
 class UserItemBumpsController < ApplicationController
   before_action only: :create do
     logged_in_user
-    matching_user_id(user_item_bump_params[:user_id]) 
   end
   before_action only: :destroy do
     logged_in_user
@@ -24,7 +23,7 @@ class UserItemBumpsController < ApplicationController
   private
 
     def user_item_bump_params
-      params.require(:user_item_bump).permit(:user_id, :post_id)
+        params.require(:user_item_bump).permit(:post_id).merge(user_id: current_user.id)
     end
 
     def correct_user

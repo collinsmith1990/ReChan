@@ -1,7 +1,12 @@
 class UserItemBumpsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :matching_user_id, only: :create
-  before_action :correct_user, only: :destroy
+  before_action only: :create do
+    logged_in_user
+    matching_user_id(user_item_bump_params[:user_id]) 
+  end
+  before_action only: :destroy do
+    logged_in_user
+    correct_user
+  end
 
   def create
     @bump = UserItemBump.new(user_item_bump_params)

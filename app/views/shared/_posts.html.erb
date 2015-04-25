@@ -1,10 +1,7 @@
 <ul>
   <% @posts.each do |post| %>
-    <% if current_user && !post.bumped_users.include?(current_user) %>
-      <%= render "user_item_bumps/bump_form", post: post %>
-    <% elsif current_user %>
-      <%= render "user_item_bumps/debump_form", post: post %>
-    <% end %>
+    <%= render_bump_forms_for(post) %>
+    <%= post.bumps %>
       <li class="post">
       <%= link_to_post(post) %>
         <% if current_user?(post.user) %>

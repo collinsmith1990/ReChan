@@ -1,5 +1,6 @@
 class UserItemBumpsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
+  before_action :matching_user_id, only: :create
   before_action :correct_user, only: :destroy
 
   def create

@@ -1,6 +1,11 @@
 class PostsController < ApplicationController
-  before_action :logged_in_user, only: :destroy
-  before_action :correct_user, only: :destroy
+  before_action only: :create do
+    matching_user_id(post_params[:user_id])
+  end
+  before_action only: :destroy do
+    logged_in_user
+    correct_user
+  end
 
   def new
     @post = Post.new

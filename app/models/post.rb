@@ -8,7 +8,6 @@ class Post < ActiveRecord::Base
   validates :link, allow_nil: true, allow_blank: false, length: { maximum: 500 }
   validates_format_of :link, :with => URI::regexp(%w(http https)), allow_nil: true
   attr_accessor :current_user
-  before_save :assign_user_id
 
   def type
     if self.link
@@ -18,9 +17,7 @@ class Post < ActiveRecord::Base
     end
   end
 
-  private
-
-  def assign_user_id
-    self.user_id = current_user.id if current_user
+  def bumps
+    self.user_item_bumps.count
   end
 end

@@ -20,4 +20,20 @@ class Post < ActiveRecord::Base
   def bumps
     self.user_item_bumps.count
   end
+
+  def points
+    self.bumps + self.comments.count
+  end
+
+  def time
+    (Time.now - self.created_at) / 3600
+  end
+
+  def score
+   -1 * ((self.points / self.time + 2) ** 1.8)
+  end
+
+  def self.sort_by_score
+    Post.all.sort_by(&:score)
+  end
 end

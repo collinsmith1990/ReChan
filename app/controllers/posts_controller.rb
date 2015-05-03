@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  require 'will_paginate/array'
+
   before_action only: :destroy do
     logged_in_user
     correct_user
@@ -20,7 +22,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.paginate(page: params[:page])
+    @posts = Post.sort_by_score.paginate(page: params[:page])
     @bump = UserItemBump.new
   end
 

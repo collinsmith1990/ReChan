@@ -9,7 +9,7 @@ RSpec.describe "User:", :type => :request do
 
       expect(current_path).to eq(new_user_path)
 
-      fill_in "User name", :with => "TestUser"
+      fill_in "user_user_name", :with => "TestUser"
       fill_in "Password", :with => "Testpass"
       fill_in "Password confirmation", :with => "Testpass"
 
@@ -25,7 +25,7 @@ RSpec.describe "User:", :type => :request do
     it "should re-render and display errors." do
       visit new_user_path
 
-      fill_in "User name", :with => "TestUser"
+      fill_in "user_user_name", :with => "TestUser"
       fill_in "Password", :with => "Testpass"
       fill_in "Password confirmation", :with => ""
       click_button "Create User"

@@ -30,7 +30,7 @@ class Post < ActiveRecord::Base
   end
 
   def score
-   -1 * ((self.points / self.time + 2) ** 1.8)
+   -1 * ((self.points + 1 / self.time + 2) ** 1.8)
   end
 
   def self.sort_by_score

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'faker',                '1.4.2'
+gem 'jquery-validation-rails'
 gem 'byebug'
 gem 'rails', '4.1.6'
 gem 'bcrypt',               '3.1.7'

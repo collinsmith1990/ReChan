@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   has_many :user_item_bumps
   has_many :bumped_posts, through: :user_item_bumps, source: :post
 
-  validates :user_name, presence: true, length: { maximum: 30 }, 
+  validates :user_name, presence: true, length: { maximum: 35 }, 
                         uniqueness: { case_sensitive: false }
-  validates :display_name, length: { maximum: 30 }, 
+  validates :display_name, length: { maximum: 35 }, 
                         uniqueness: { case_sensitive: false }
 
   has_secure_password

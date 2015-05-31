@@ -1,0 +1,39 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Welcome to ReChan</h4>
+      </div>
+      <!-- Body -->
+      <div class="modal-body">
+
+        <ul class="nav nav-tabs">
+          <li id="signup-tab" class="active"><a href="#signup-pane" data-toggle="tab">Sign up</a></li>
+          <li id="login-tab"><a href="#login-pane" data-toggle="tab">Log in</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="signup-pane">
+            <div class="row">
+              <%= render "users/new_user_form" %>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="login-pane">
+            <div class="row">
+              <%= render "sessions/login_form" %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="modal-footer">
+       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

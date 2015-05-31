@@ -6,9 +6,21 @@
         <li><%= link_to current_user.display_name, user_path(current_user) %></li>
         <li><%= link_to "Log out", logout_path, method: "delete" %></li>
       <% else %>
-        <li><%= link_to "Sign up", new_user_path %></li>
-        <li><%= link_to "Log in", login_path %></li>
+        <li>
+          <!-- Button trigger modal -->
+          <button type="button" id="signup-button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            Sign up
+          </button>
+        </li>
+        <li>
+          <!-- Button trigger modal -->
+          <a href="#" type="button" id="login-button" class="" data-toggle="modal" data-target="#myModal">
+            Log in
+          </a>
+        </li>
+        <%= render 'shared/modal_login_signup' %>
       <% end %>
     </ul>
   </div>
 </header>
+

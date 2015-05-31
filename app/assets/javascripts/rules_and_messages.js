@@ -1,6 +1,6 @@
 var user_name_rules = { required: true, rangelength: [1, 35] };
 var password_rules = { required: true, minlength: 6 };
-var password_confirmation_rules = { required: true, equalTo: "#password" };
+var password_confirmation_rules = { required: true, minlength: 6, equalTo: "#password" };
 
 var user_name_message = { required: "Please enter a username.",
                           rangelength: "User name must be less than 35 characters." }

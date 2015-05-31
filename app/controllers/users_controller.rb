@@ -22,6 +22,12 @@ class UsersController < ApplicationController
     @bump = UserItemBump.new
   end
 
+  def check_username
+    username = params[:username].downcase
+    data = {exist: User.find_by(user_name: username) ? true : false}
+    render json: data, status: :ok
+  end
+
   private
 
     def user_params

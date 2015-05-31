@@ -1,4 +1,4 @@
-var user_name_rules = { required: true, rangelength: [1, 35] };
+var user_name_rules = { required: true, rangelength: [1, 35], checkUserName: true };
 var password_rules = { required: true, minlength: 6 };
 var password_confirmation_rules = { required: true, minlength: 6, equalTo: "#password" };
 
@@ -11,3 +11,21 @@ var password_confirmation_message = { required: "Please confirm your password.",
 
 var success_icon = "glyphicon glyphicon-ok form-control-feedback"
 var error_icon = "glyphicon glyphicon-remove form-control-feedback"
+
+$.validator.addMethod("checkUserName", 
+  function(value, element) {
+    var result = false;
+    var request = $.ajax({
+      type:"POST",
+      async: false,
+      url: "/check_username",
+      data: {username: value},
+      success: function(data) {
+        console.log(data);
+        result = (data.exist == false) ? true : false;
+      }
+    });
+    return result; 
+  }, 
+  "This username is already taken."
+);

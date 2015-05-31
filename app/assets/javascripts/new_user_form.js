@@ -1,4 +1,5 @@
 $(function() {
+
   $("#newuserform").validate( {
     rules: {
       "user[user_name]": user_name_rules,

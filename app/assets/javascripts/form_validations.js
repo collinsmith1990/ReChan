@@ -13,6 +13,7 @@ function unhighlight(element) {
 
 $(function() {
 
+  //-----New User Form-----
   $("#newuserform").validate( {
     rules: {
       "user[user_name]": user_name_rules,
@@ -22,7 +23,7 @@ $(function() {
     messages: {
       "user[user_name]": user_name_message,
       "user[password]": password_message,
-      "user[password_confirmation]": password_confirmation_message,
+      "user[password_confirmation]": password_confirmation_message
     },
     highlight: function(element) {
       highlight(element);
@@ -32,10 +33,65 @@ $(function() {
     }
   });
 
+  //-----User Sign In Form-----
   $("#usersigninform").validate( {
     rules: {
       "session[user_name]": { required: true },
       "session[password]": { required: true }
+    },
+    messages: {
+      "session[user_name]": user_name_message,
+      "session[password]": password_message
+    },
+    highlight: function(element) {
+      highlight(element);
+    },
+    unhighlight: function(element) {
+      unhighlight(element);
+    }
+  });
+
+  //-----Comment Form-----
+  $("#commentform").validate( {
+    rules: {
+      "comment[content]": { required: true }
+    },
+    messages: {
+      "comment[content]": comment_message
+    },
+    highlight: function(element) {
+      highlight(element);
+    },
+    unhighlight: function(element) {
+      unhighlight(element);
+    }
+  });
+
+  //-----Post Form-----
+  $("#postform").validate( {
+    rules: {
+      "post[title]": post_title_rules
+    },
+    messages: {
+      "post[title]": title_post_message
+    },
+    highlight: function(element) {
+      highlight(element);
+    },
+    unhighlight: function(element) {
+      unhighlight(element);
+    }
+  });
+
+  //-----Post Form-----
+  $("#linkpostform").validate( {
+    rules: {
+      "post[title]": post_title_rules,
+      "post[link]": post_link_rules
+    },
+    messages: {
+      "post[title]": title_post_message,
+      "post[link]": title_link_message
     },
     highlight: function(element) {
       highlight(element);
